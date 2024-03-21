@@ -60,13 +60,12 @@ class Scraper:
 
 if __name__ == '__main__':
     result = {}
-    sequence_precise = '975'
+    sequence_precise = '997'
     options = Options()
     # options.add_argument('--headless')
     driver = Chrome(options=options)
     # Generate 20 sets of data
     for _ in range(100):
-        #phone_number = ''.join([str(random.randint(0, 9)) for _ in range(8)])
         phone_number = '9745'.join([str(random.randint(10, 20))]).join([str(random.randint(100, 200))])
         chiffres_restants = ''.join([str(random.randint(0, 9)) for _ in range(5)])
         phone_number = sequence_precise + chiffres_restants
@@ -74,7 +73,7 @@ if __name__ == '__main__':
             "phone": phone_number,
             "password": phone_number,
         }
-        scraper = Scraper(data, result)
+        scraper = Scraper(data, result,driver)
         scraper.run()
         driver.delete_all_cookies()
     driver.quit()
